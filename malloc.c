@@ -1,6 +1,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+#include <stdio.h>
+
 #include "utils.h"
 #include "malloc.h"
 #include "init.h"
@@ -17,6 +19,7 @@ void  *malloc(size_t size)
   // to get the actual size required in memory
   required_size = size + sizeof(t_block);
 
+  fprintf(stderr, "NOTRE PRTINTF!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
   // Return NULL if the user requested more than the page size
   if (required_size > g_page_size)
   {
@@ -60,7 +63,7 @@ void  *malloc(size_t size)
   }
 
   // No available block was found
-
+  return (NULL);
 }
 
 unsigned int get_bin_index(size_t size)
