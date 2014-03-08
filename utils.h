@@ -12,7 +12,7 @@ typedef struct s_block
   char            is_free;
   size_t          size;
   struct s_block  *next;
-  struct s_block   *prev;
+  struct s_block  *prev;
 } t_block;
 
 /**
