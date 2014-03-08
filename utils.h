@@ -4,7 +4,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-# define PAGE_SIZE 1024
+#define g_page_size 1024
+#define g_bins_count 8
 
 typedef struct s_block
 {
@@ -24,8 +25,6 @@ void      *allocated_mem;
  * The bin sizes are as follows :
  * 8, 16, 32, 64, 128, 256, 512, 1024
  */
-t_block   *bins_array[8];
-
-
+t_block   *bins_array[g_bins_count];
 
 #endif
