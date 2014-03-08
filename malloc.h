@@ -8,6 +8,6 @@ void *malloc(size_t size);
 
 void init_bins();
 
-unsigned int get_bin_size(size_t size);
+unsigned int get_bin_index(size_t size);
 
 #endif

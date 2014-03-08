@@ -11,7 +11,7 @@ void *init_mem()
   // If sbrk failed, the malloc call should return NULL
   if (temp == NULL)
   {
-    return NULL;
+    return (NULL);
   }
 
   // Place the new page/block in the approriate bin
@@ -22,5 +22,5 @@ void *init_mem()
   bins_array[i]->size = g_page_size;
   bins_array[i]->is_free = 1;
 
-  return temp;
+  return (temp);
 }

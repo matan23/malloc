@@ -8,7 +8,8 @@
 
 void  *malloc(size_t size)
 {
-  t_block *new_block;
+  t_block *block;
+  t_block *next;
   size_t  required_size;
   size_t  bin_index;
 
@@ -19,7 +20,7 @@ void  *malloc(size_t size)
   // Return NULL if the user requested more than the page size
   if (required_size > g_page_size)
   {
-    return NULL;
+    return (NULL);
   }
 
   // If no memory was allocated yet, allocate our first page.
@@ -29,12 +30,36 @@ void  *malloc(size_t size)
     allocated_mem = init_mem();
     if (allocated_mem == NULL)
     {
-      return NULL;
+      return (NULL);
     }
   }
 
   // Determine which bin this block will be stored in
   bin_index = get_bin_index(required_size);
+
+  // TODO: move to allocate.c ?
+  // Look for an available block in the bin
+  if (bins_array[bin_index] != NULL)
+  {
+    // Remove the block from the bin and return it
+    block = bins_array[bin_index];
+    block->is_free = 0;
+    next = block->next;
+    block->next = NULL;
+    block->prev = NULL;
+
+    // Update the bin
+    bins_array[bin_index] = next;
+    if (next != NULL)
+    {
+      next->prev = NULL;
+    }
+
+    // Return a pointer offset by the size of our block data
+    return (block + 1);
+  }
+
+  // No available block was found
 
 }
 
