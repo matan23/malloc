@@ -4,14 +4,10 @@
 // Globals
 #define g_bins_count 11
 
-t_block         *bins_array[g_bins_count];
-
 void *malloc(size_t size);
-
-void free(void *ptr);
 
 void init_bins();
 
-unsigned int get_bin_size(size_t size);
+unsigned int get_bin_index(size_t size);
 
 #endif
