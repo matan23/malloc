@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-# define PAGE_SIZE sysconf(_SC_PAGESIZE)
+# define PAGE_SIZE 1024
 
 typedef struct s_block
 {
@@ -14,8 +14,17 @@ typedef struct s_block
   struct s_block   *prev;
 } t_block;
 
-void  *allocated_mem;
+/**
+ * Pointer to the beginnig of the memory allocated to our program.
+ * This is updated on each sbrk call we perform.
+ */
+void      *allocated_mem;
 
+/**
+ * The bin sizes are as follows :
+ * 8, 16, 32, 64, 128, 256, 512, 1024
+ */
+t_block   *bins_array[8];
 
 
 
