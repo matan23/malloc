@@ -6,6 +6,7 @@
 
 #define g_page_size 1024
 #define g_bins_count 8
+#define g_last_bins_index	g_bins_count - 1
 
 typedef struct s_block
 {
